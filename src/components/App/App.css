@@ -2,10 +2,14 @@
     --color-blue: #3199dc;
     --color-dark: #222222;
     --color-light: #f8f9fa;
+    --color-white: #fff;
+    --color-black: #000;
 
     --spacing-small: 10px;
     --spacing-medium: 15px;
     --spacing-large: 20px;
+
+    --box-shadow: 0 2px 24px rgba(168, 175, 196, .5);
 }
 
 *, ::after, ::before {

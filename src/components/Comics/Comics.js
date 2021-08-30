@@ -1,12 +1,13 @@
 import { API_URL, URL_COMICS, URL_CHARACTERS, IMG_STANDARD_XLARGE, IMG_NOT_AVAILABLE } from '../../constants/api';
 import { getDataApi } from '../../utils/getDataApi';
 import { ROOT_INDEX } from '../../constants/root'
-import './Comics.css'
+import Error from '../Error/Error';
+import Characters from '../Characters/Characters';
+import classes from './Comics.css'
 
 class Comics {
-    async render() {
-        const data = await getDataApi.getData(API_URL + URL_COMICS);
 
+    renderComics(data){
         let htmlContent = ''
 
         data.map(({ id, title, thumbnail: {path, extension}}) => {
@@ -15,16 +16,16 @@ class Comics {
                 const uri = API_URL + URL_COMICS + '/' + id + '/' + URL_CHARACTERS
 
                 htmlContent += `
-                    <li class="comics__item" data-uri=${uri}>
-                        <span class="comics__title">${title}</span>
-                        <img class="comics__img" src=${imgSrc} />
+                    <li class="comics__item ${classes.comics__item}" data-uri=${uri}>
+                        <span class=${classes.comics__title}>${title}</span>
+                        <img class="img__contain ${classes.comics__img}" src=${imgSrc} />
                     </li>
                 `
             }
         })
 
         const htmlWrapper = `
-            <ul class="comics_container">
+            <ul class=${classes.comics_container}>
                 ${htmlContent}
             </ul>
         `
@@ -32,11 +33,16 @@ class Comics {
         ROOT_INDEX.innerHTML = htmlWrapper
     }
 
+    async render() {
+        const data = await getDataApi.getData(API_URL + URL_COMICS);
+        data ? this.renderComics(data) : Error.render() 
+    }
+
     eventListener(){
         document.querySelectorAll('.comics__item').forEach(element => {
             const dataUri = element.getAttribute('data-uri')
             element.addEventListener('click', () => {
-                console.log(dataUri)
+                Characters.render(dataUri)
             })
         })
     }

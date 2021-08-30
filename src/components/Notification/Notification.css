@@ -1,0 +1,18 @@
+.notification__wrapper{
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-medium) var(--spacing-large);
+    position: fixed;
+    bottom: var(--spacing-large);
+    left: var(--spacing-large);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-black);
+}
+
+.notification__close{
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}

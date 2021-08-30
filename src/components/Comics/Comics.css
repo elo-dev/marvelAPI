@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 .comics_container{
     display: flex;
     flex-wrap: wrap;
@@ -23,8 +25,22 @@
     display: flex;
     margin: auto;
     padding: var(--spacing-small) var(--spacing-medium);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 21px;
 }
 
 .comics__img{
+    width: 100%;
+}
 
+:global(.img__contain){
+    display: block;
+    object-fit: contain;
+    object-position: center;
+}
+
+:global(.img__cover){
+    display: block;
+    object-fit: cover;
+    object-position: center;
 }
